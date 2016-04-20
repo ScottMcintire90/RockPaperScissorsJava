@@ -10,3 +10,8 @@ Player two "Paper"
 
 Player one "Scissors"           "scissors" and "paper"              "Player 1 Wins"
 Player two  "Paper"
+
+
+Player one "Rock"                 "rock" and x                      either player 1 wins
+Computer Player inputs any                                      or the computer depending
+string                                                          on the random selection
