@@ -26,15 +26,20 @@ public class RockPaperScissors {
     // }, new VelocityTemplateEngine());
   }
 
-  public static Boolean checkWinner(String player1, String player2) {
-    player1 = "rock";
-    player2 = "rock";
-    if(player1.equals(player2)) {
-      return true;
-    } else {
+  public static String checkWinner(String player1, String player2) {
+    String tieGame = "Tie Game";
+    String winPlayer1 = "Player 1 Wins";
+    String winPlayer2 = "Player 2 Wins";
+    String outcome = "";
 
+    if(player1.equals(player2)) {
+      outcome = tieGame;
+    } else if(player1 == "rock" && player2 == "scissors") {
+      outcome = winPlayer1;
+    } else {
+      
     }
-    return true;
+   return outcome;
   }
 
 }
