@@ -8,6 +8,7 @@ import static spark.Spark.*;
 
 public class RockPaperScissors {
   public static void main(String[] args) {
+    staticFileLocation("/public");
     get("/", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
       model.put("template", "templates/home.vtl");
@@ -75,7 +76,6 @@ public class RockPaperScissors {
     String tieGame = "Tie Game";
     String winPlayer1 = "Player 1 Wins";
     String winPlayer2 = "Player 2 Wins";
-    String winComputer = "The Computer Wins";
     String outcome = "";
 
     if(player1.equals(player2)) {
