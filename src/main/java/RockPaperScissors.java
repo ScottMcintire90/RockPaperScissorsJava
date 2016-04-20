@@ -1,39 +1,44 @@
-import java.util.*;
+// import java.util.*;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.Random;
-// import spark.ModelAndView;
-// import spark.template.velocity.VelocityTemplateEngine;
-// import static spark.Spark.*;
+import spark.ModelAndView;
+import spark.template.velocity.VelocityTemplateEngine;
+import static spark.Spark.*;
 
 public class RockPaperScissors {
   public static void main(String[] args) {
-    // get("/", (request, response) -> {
-    //   Map<String, Object> model = new HashMap<String, Object>();
-    //   model.put("template", "templates/home.vtl");
-    //   return new ModelAndView(model, "templates/layout.vtl");
-    // }, new VelocityTemplateEngine());
-    //
-    // get("/detector", (request, response) -> {
-    //   Map<String, Object> model = new HashMap<String, Object>();
-    //
-    //   String userInput = request.queryParams("");
-    //   NumbersToWords newNumbers = new NumbersToWords();
-    //   String convertedNumber = newNumbers.integerConverter(userInput);
-    //   model.put("convertedNumber", convertedNumber);
-    //
-    //   model.put("template", "templates/detector.vtl");
-    //   return new ModelAndView(model, "templates/layout.vtl");
-    // }, new VelocityTemplateEngine());
+    get("/", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      model.put("template", "templates/home.vtl");
+      return new ModelAndView(model, "templates/layout.vtl");
+    }, new VelocityTemplateEngine());
+
+    get("/detector", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+
+      String player1 = request.queryParams("");
+      String player2 = request.queryParams("");
+      RockPaperScissors newGame = new RockPaperScissors();
+      String win = newGame.checkWinner(player1, player2);
+
+      model.put("player1",player1);
+      model.put("player2",player2);
+      model.put("win", win);
+
+      model.put("template", "templates/detector.vtl");
+      return new ModelAndView(model, "templates/layout.vtl");
+    }, new VelocityTemplateEngine());
   }
 
-String randomResult = "";
-  public String computerChooses(String computerChoice) {
+
+  public static String computerChooses() {
     ArrayList<String> computerRandom = new ArrayList<String>();
     computerRandom.add("rock");
     computerRandom.add("scissors");
     computerRandom.add("paper");
+    String randomResult = "";
     Random computer = new Random();
     randomResult = computerRandom.get(computer.nextInt(3));
     return randomResult;
@@ -51,12 +56,9 @@ String randomResult = "";
   //   }
   //
   // }
-
-
-
   public static String checkWinner(String player1, String player2) {
-    // player2 = "";
-    // computerChooses(player2);
+    player2 = "";
+    player2 = RockPaperScissors.computerChooses();
     String tieGame = "Tie Game";
     String winPlayer1 = "Player 1 Wins";
     String winPlayer2 = "Player 2 Wins";

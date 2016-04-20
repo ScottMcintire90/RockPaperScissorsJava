@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="RockPaperScissorsTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2016-04-20T18:07:40" hostname="epicodus-54.local" time="0.0">
+<testsuite name="RockPaperScissorsTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2016-04-20T18:21:42" hostname="epicodus-54.local" time="0.001">
   <properties/>
-  <testcase name="computerChooses_returnRandom_ResultUnknown" classname="RockPaperScissorsTest" time="0.0"/>
+  <testcase name="checkWinner_player1VersusComputer_winUnknown" classname="RockPaperScissorsTest" time="0.001"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
