@@ -15,11 +15,18 @@ public class RockPaperScissors {
       return new ModelAndView(model, "templates/layout.vtl");
     }, new VelocityTemplateEngine());
 
+    get("/twoplayer", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      model.put("template", "templates/twoplayer.vtl");
+      return new ModelAndView(model, "templates/layout.vtl");
+    }, new VelocityTemplateEngine());
+
+
     get("/detector", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
 
-      String player1 = request.queryParams("");
-      String player2 = request.queryParams("");
+      String player1 = request.queryParams("player1");
+      String player2 = request.queryParams("player2");
       RockPaperScissors newGame = new RockPaperScissors();
       String win = newGame.checkWinner(player1, player2);
 
@@ -48,7 +55,7 @@ public class RockPaperScissors {
   // public static String playerChoice(String gameType) {
   //   String onePlayerGame = computerChooses();
   //   String twoPlayerGame = checkWinner();
-  //   if (gameType == onePlayer) {
+  //   if (gameType .equals(onePlayer) {
 
   //     return onePlayerGame;
   //   } else {
@@ -57,8 +64,8 @@ public class RockPaperScissors {
   //
   // }
   public static String checkWinner(String player1, String player2) {
-    player2 = "";
-    player2 = RockPaperScissors.computerChooses();
+    // player2 = "";
+    // player2 = RockPaperScissors.computerChooses();
     String tieGame = "Tie Game";
     String winPlayer1 = "Player 1 Wins";
     String winPlayer2 = "Player 2 Wins";
@@ -66,9 +73,10 @@ public class RockPaperScissors {
 
     if(player1.equals(player2)) {
       outcome = tieGame;
-    } else if(player1 == "rock" && player2 == "scissors" || player1 == "paper" && player2 == "rock" || player1 == "scissors" && player2 == "paper") {
+    } else if(player1.equals("rock") && player2.equals("scissors") || player1.equals("paper") && player2.equals("rock") || player1.equals("scissors") && player2.equals("paper")) {
       outcome = winPlayer1;
-    } else if(player1 == "rock" && player2 == "paper" || player1 == "scissors" && player2 == "rock" || player1 == "paper" && player2 == "scissors"){
+    } else if(player1.equals("rock") && player2 .equals("paper") || player1.equals("scissors") && player2.equals("rock") || player1.equals("paper") && player2.equals("scissors"))
+    {
       outcome = winPlayer2;
     }
    return outcome;
