@@ -1,4 +1,3 @@
-// import java.util.*;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
@@ -15,12 +14,33 @@ public class RockPaperScissors {
       return new ModelAndView(model, "templates/layout.vtl");
     }, new VelocityTemplateEngine());
 
+    get("/oneplayer", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      model.put("template", "templates/oneplayer.vtl");
+      return new ModelAndView(model, "templates/layout.vtl");
+    }, new VelocityTemplateEngine());
+
     get("/twoplayer", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
       model.put("template", "templates/twoplayer.vtl");
       return new ModelAndView(model, "templates/layout.vtl");
     }, new VelocityTemplateEngine());
 
+    get("/detector2", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+
+      String player1 = request.queryParams("player1");
+      String player2 = RockPaperScissors.computerChooses();
+      RockPaperScissors newGame = new RockPaperScissors();
+      String win = newGame.checkWinner(player1, player2);
+
+      model.put("player1",player1);
+      model.put("player2",player2);
+      model.put("win", win);
+
+      model.put("template", "templates/detector2.vtl");
+      return new ModelAndView(model, "templates/layout.vtl");
+    }, new VelocityTemplateEngine());
 
     get("/detector", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
@@ -39,7 +59,6 @@ public class RockPaperScissors {
     }, new VelocityTemplateEngine());
   }
 
-
   public static String computerChooses() {
     ArrayList<String> computerRandom = new ArrayList<String>();
     computerRandom.add("rock");
@@ -49,26 +68,14 @@ public class RockPaperScissors {
     Random computer = new Random();
     randomResult = computerRandom.get(computer.nextInt(3));
     return randomResult;
-
   }
-  // String computerPlayer = computerChooses();
-  // public static String playerChoice(String gameType) {
-  //   String onePlayerGame = computerChooses();
-  //   String twoPlayerGame = checkWinner();
-  //   if (gameType .equals(onePlayer) {
 
-  //     return onePlayerGame;
-  //   } else {
-  //     return twoPlayerGame;
-  //   }
-  //
-  // }
   public static String checkWinner(String player1, String player2) {
-    // player2 = "";
-    // player2 = RockPaperScissors.computerChooses();
+
     String tieGame = "Tie Game";
     String winPlayer1 = "Player 1 Wins";
     String winPlayer2 = "Player 2 Wins";
+    String winComputer = "The Computer Wins";
     String outcome = "";
 
     if(player1.equals(player2)) {
